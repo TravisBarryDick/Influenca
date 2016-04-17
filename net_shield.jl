@@ -7,7 +7,7 @@ function net_shield(g::Graph, k)
         u *= -1
     end
 
-    S = Set{Int}()
+    S = Array(Int, 0)
     for iter in 1:k
         best_score = -Inf
         best_node = 0
