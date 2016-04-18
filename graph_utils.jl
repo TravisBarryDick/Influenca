@@ -14,7 +14,7 @@ the form `a[delim]b`, and indicates that there is an edge between nodes a and b.
 The nodes are relabeled in the order that they are observed to be contiguous
 numbers between `1` and `n`.
 """
-function load_graph(path, delimeter = ' ')
+function load_graph(path)
     new_ids = Dict{Int, Int}()
     g = Graph(0)
     function get_id(ix)
@@ -26,7 +26,7 @@ function load_graph(path, delimeter = ' ')
             return id
         end
     end
-    edges = readdlm(path, delimeter, Int)
+    edges = readdlm(path, Int)
     for i in 1:size(edges, 1)
         add_edge!(g, get_id(edges[i,1]), get_id(edges[i,2]))
     end
