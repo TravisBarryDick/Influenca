@@ -9,10 +9,6 @@ function main()
             help = "path to the graph file."
             arg_type = ASCIIString
             required = true
-        "--delimeter", "-d"
-            help = "delimeter in graph file."
-            arg_type = ASCIIString
-            required = true
         "--beta", "-b"
             help = "Infection probability in the independent cascade model."
             arg_type = Float64
