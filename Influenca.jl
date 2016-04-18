@@ -12,7 +12,7 @@ include("net_shield.jl")
 export net_shield
 
 include("maximize_influence.jl")
-export maximize_influence, maximize_influence_CELF
+export maximize_influence, maximize_influence_CELF, maximize_influence_CWY
 
 include("degree_heuristic.jl")
 export degree_heuristic
