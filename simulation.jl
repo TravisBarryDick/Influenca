@@ -20,7 +20,7 @@ function SimulationState(g::Graph, β)
     infected = Array(Int, 0)
     _infected = Array(Int, 0)
     recovered = Array(Int, 0)
-    return SimulationState(g, β, δ, s, infected, _infected, recovered, 0)
+    return SimulationState(g, β, s, infected, _infected, recovered, 0)
 end
 
 """
@@ -102,6 +102,11 @@ function evaluate_immunization!(s::SimulationState, I; N::Int=20000, m::Int=10)
     return total/N
 end
 
+function evaluate_immunization(g::Graph, β, I; N::Int = 20000, m::Int = 10)
+    s = SimulationState(g, β)
+    return evaluate_immunization!(s, I, N=N, m=m)
+end
+
 """
 Simulates `N` propagations of the virus starting with the nodes in `I` being
 infected. Returns the average number of infected nodes per simulation.
@@ -117,4 +122,9 @@ function evaluate_influence!(s::SimulationState, I; N::Int=20000)
         total += length(s.recovered)
     end
     return total/N
+end
+
+function evaluate_influence(g::Graph, β, I; N::Int = 20000)
+    s = SimulationState(g, β)
+    return evaluate_influence!(s, I, N=N)
 end

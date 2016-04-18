@@ -6,7 +6,8 @@ export add_edge!, spadj
 
 include("simulation.jl")
 export SimulationState, reset!, infect!, immunize!, simulate!
-export evaluate_immunization!, evaluate_influence!
+export evaluate_immunization!, evaluate_immunization
+export evaluate_influence!, evaluate_influence
 
 include("net_shield.jl")
 export net_shield
