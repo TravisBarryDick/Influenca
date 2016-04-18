@@ -4,7 +4,6 @@ type SimulationState
     # Problem parameters
     g::Graph
     β::Float64
-    δ::Float64
     # Simulation state
     s::Vector{NodeState} # vector of node states
     infected::Vector{Int} # list of infected nodes
@@ -16,7 +15,7 @@ end
 """
 Constructs a `SimulationState` for SIR virus propagation model on the graph `g`.
 """
-function SimulationState(g::Graph, β, δ)
+function SimulationState(g::Graph, β)
     s = [Susceptible for i in 1:num_nodes(g)]
     infected = Array(Int, 0)
     _infected = Array(Int, 0)
@@ -74,12 +73,8 @@ function simulate!(s::SimulationState; approximate=false)
                     push!(s.infected, j)
                 end
             end
-            if rand() < s.δ
-                s.s[i] = Recovered
-                push!(s.recovered, i)
-            else
-                push!(s.infected, i)
-            end
+            s.s[i] = Recovered
+            push!(s.recovered, i)
         end
         s.iteration += 1
     end
