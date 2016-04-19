@@ -21,8 +21,8 @@ export maximize_influence_CELF
 include("maximize_influence_CWY.jl")
 export maximize_influence_CWY
 
-include("degree_heuristic.jl")
-export degree_heuristic
+include("heuristics.jl")
+export degree_heuristic, random_heuristic
 
 include("example_graphs.jl")
 export prakash_fig6dot2
