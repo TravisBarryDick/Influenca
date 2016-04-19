@@ -2,7 +2,7 @@ function net_shield(g::Graph, k)
     A = spadj(g)
     λs, us = eigs(A, nev=1, which=:LR)
     λ = λs[1]
-    u = us[:,1]
+    u = abs(us[:,1])
     if u[1] < 0
         u *= -1
     end
