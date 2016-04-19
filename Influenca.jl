@@ -10,7 +10,7 @@ export evaluate_immunization!, evaluate_immunization
 export evaluate_influence!, evaluate_influence
 
 include("net_shield.jl")
-export net_shield
+export net_shield, eigenvalue_reduction
 
 include("maximize_influence.jl")
 export maximize_influence

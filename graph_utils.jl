@@ -73,3 +73,21 @@ function spadj(g::Graph)
     end
     return sparse(E[:,1], E[:,2], ones(2*num_edges(g)), num_nodes(g), num_nodes(g))
 end
+
+function spadj(g::Graph, S)
+    edge_start = Array(Int, 0)
+    edge_end = Array(Int, 0)
+    m = 0
+    for i in 1:num_nodes(g)
+        if !in(i, S)
+            for j in neighbors(g, i)
+                if !in(j, S)
+                    push!(edge_start, i)
+                    push!(edge_end, j)
+                    m += 1
+                end
+            end
+        end
+    end
+    return sparse(edge_start, edge_end, ones(m), num_nodes(g), num_nodes(g))
+end

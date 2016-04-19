@@ -30,3 +30,15 @@ function net_shield(g::Graph, k)
     end
     return S
 end
+
+"""
+Computes the reduction in the largest eigenvalue of the adjacency matrix after
+removing the nodes in `S`.
+"""
+function eigenvalue_reduction(g::Graph, S)
+    A = spadj(g)
+    λ = eigs(A, nev=1, which=:LR)[1][1]
+    A′ = spadj(g, S)
+    λ′ = eigs(A′, nev=1, which=:LR)[1][1]
+    return λ - λ′
+end
