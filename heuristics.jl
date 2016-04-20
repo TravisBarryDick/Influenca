@@ -6,3 +6,13 @@ end
 
 "Returns a random subset of `k` nodes from the graph `g`."
 random_heuristic(g::Graph, k) = randperm(num_nodes(g))[1:k]
+
+function acquaintance_heuristic(g::Graph, k)
+    S = Array(Int, k)
+    for iter in 1:k
+        i = rand(1:num_nodes(g))
+        j = rand(neighbors(g, i))
+        push!(S, j)
+    end
+    return S
+end

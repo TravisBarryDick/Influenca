@@ -22,7 +22,7 @@ include("maximize_influence_CWY.jl")
 export maximize_influence_CWY
 
 include("heuristics.jl")
-export degree_heuristic, random_heuristic
+export degree_heuristic, random_heuristic, acquaintance_heuristic
 
 include("example_graphs.jl")
 export prakash_fig6dot2
