@@ -81,6 +81,20 @@ function simulate!(s::SimulationState; approximate=false)
     return s
 end
 
+"Returns m samples from 1:n without replacement using Floyd's algorithm."
+function sample_wor(n, m)
+    S = Set{Int}()
+    for j in n-m+1:n
+        t = ceil(Int, rand()*j)
+        if t in S
+            push!(S, j)
+        else
+            push!(S, t)
+        end
+    end
+    return S
+end
+
 """
 Simulates `N` propagations of the virus starting from `m` randomly chosen
 infected nodes after putting the nodes in `I` into the recovered state. Returns
@@ -93,8 +107,8 @@ function evaluate_immunization!(s::SimulationState, I; N::Int=20000, m::Int=10)
         for i in I
             immunize!(s, i)
         end
-        for i in 1:m
-            infect!(s, ceil(Int, rand() * num_nodes(s.g)))
+        for i in sample_wor(num_nodes(s.g), m)
+            infect!(s, i)
         end
         simulate!(s)
         total += length(s.recovered) - length(I)
